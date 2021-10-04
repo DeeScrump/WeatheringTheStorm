@@ -1,0 +1,1 @@
+var weatherAPIKey = '4f19201c0368d72d25707fd34bd61aba';
