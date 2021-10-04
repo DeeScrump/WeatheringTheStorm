@@ -1,0 +1,4 @@
+.headerBackGround {
+    background-image: linear-gradient(to left bottom, orange, blue);
+    border: .2rem solid black;
+}
