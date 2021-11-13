@@ -25,21 +25,21 @@
                     <h2 class="text-white">
                         Search for a City:
                     </h2>
-                    <form class="formSearch">
+                    <form class="formSearch" id="formSearch">
                         <div class="input-group mb-3">
-                            <button class="btn btn-outline-secondary buttonSearch" type="submit">Search</button>
-                            <input type="text" class="inputSearch" placeholder="Miami Gardens" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            <button id="buttonSearch" class="btn btn-outline-secondary buttonSearch" type="submit">Search</button>
+                            <input id="inputSearch" type="text" class="inputSearch" placeholder="Miami Gardens" aria-label="Example text with button addon" aria-describedby="button-addon1">
                         </div>
                     </form>
 
-                    <div class="history"></div>
+                    <div class="history list-group" id="history"></div>
 
                 </section>
 
                 <div class="col-lg-9 justify-content-center text-center bg-primary">
                     <h3>Main Card Area</h3>
-                    <section class="daily"></section>
-                    <section class="forecast"></section>
+                    <section class="daily" id="daily"></section>
+                    <section class="forecast" id="forecast"></section>
                 </div>
             </div>
         </div>

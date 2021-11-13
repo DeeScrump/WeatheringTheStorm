@@ -1,10 +1,10 @@
-var weatherAPIKey = "4f19201c0368d72d25707fd34bd61aba";
+var apiKey = "4f19201c0368d72d25707fd34bd61aba";
 var weatherURL = "https://api.openweathermap.org";
 var storedCities = [];
 
 var formSearch = document.querySelector(".formSearch");
 var buttonSearch = document.querySelector(".buttonSearch");
-var inputSearch = document.querySelector("inputSearch");
+var inputSearch = document.querySelector(".inputSearch");
 var historyEncap = document.querySelector(".history");
 var dailyEncap = document.querySelector(".daily");
 var forecastEncap = document.querySelector(".forecast");
@@ -25,7 +25,7 @@ function displayStoredCities() {
     }
 }
 
-function addtoStoredCities(userInput) {
+function addToStoredCities(userInput) {
     // If there is no search term return the function
     if (storedCities.indexOf(userInput) !== -1) {
       return;
@@ -44,7 +44,26 @@ function grabStoredCities() {
     displayStoredCities();
 }
 
-function handleSearchFormSubmit(e) {
+function getCityLatLong(userInput) {
+    var apiUrl = `${weatherURL}/geo/1.0/direct?q=${userInput}&limit=5&appid=${apiKey}`;
+  
+    fetch(apiUrl)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data[0]) {
+          alert('Location not found');
+        } else {
+          addToStoredCities(userInput);
+        }
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+  }
+
+function citySearchSubmit(e) {
     // Don't continue if there is nothing in the search form
     if (!inputSearch.value) {
       return;
@@ -52,11 +71,11 @@ function handleSearchFormSubmit(e) {
   
     e.preventDefault();
     var userInput = inputSearch.value.trim();
-    fetchCoords(userInput);
+    getCityLatLong(userInput);
     inputSearch.value = '';
 }
 
-function handleSearchHistoryClick(e) {
+function cityHistoryLinks(e) {
     // Don't do search if current elements is not a search history button
     if (!e.target.matches('.btn-history')) {
       return;
@@ -64,9 +83,9 @@ function handleSearchHistoryClick(e) {
   
     var btn = e.target;
     var userInput = btn.getAttribute('data-search');
-    fetchCoords(userInput);
+    getCityLatLong(userInput);
 }
 
 grabStoredCities();
-formSearch.addEventListener('submit', handleSearchFormSubmit);
-historyEncap.addEventListener('click', handleSearchHistoryClick);
+formSearch.addEventListener('submit', citySearchSubmit);
+historyEncap.addEventListener('click', cityHistoryLinks);
