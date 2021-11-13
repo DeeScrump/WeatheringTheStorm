@@ -53,7 +53,7 @@ function getCityLatLong(userInput) {
       })
       .then(function (data) {
         if (!data[0]) {
-          alert('Location not found');
+          alert(`Could not find a city named ${userInput}`);
         } else {
           addToStoredCities(userInput);
         }
