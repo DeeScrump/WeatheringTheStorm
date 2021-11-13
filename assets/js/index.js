@@ -11,6 +11,7 @@ var forecastEncap = document.querySelector(".forecast");
 
 
 function displayStoredCities() {
+    // clear out 
     historyEncap.innerHTML ="";
 
     for (var i = 0; i < storedCities.length; i++) {
@@ -26,7 +27,6 @@ function displayStoredCities() {
 }
 
 function addToStoredCities(userInput) {
-    // If there is no search term return the function
     if (storedCities.indexOf(userInput) !== -1) {
       return;
     }
@@ -58,13 +58,9 @@ function getCityLatLong(userInput) {
           addToStoredCities(userInput);
         }
       })
-      .catch(function (err) {
-        console.error(err);
-      });
   }
 
 function citySearchSubmit(e) {
-    // Don't continue if there is nothing in the search form
     if (!inputSearch.value) {
       return;
     }
@@ -76,7 +72,6 @@ function citySearchSubmit(e) {
 }
 
 function cityHistoryLinks(e) {
-    // Don't do search if current elements is not a search history button
     if (!e.target.matches('.btn-history')) {
       return;
     }
@@ -84,6 +79,19 @@ function cityHistoryLinks(e) {
     var btn = e.target;
     var userInput = btn.getAttribute('data-search');
     getCityLatLong(userInput);
+}
+
+function getWeatherDetails(lat, lon, city) {
+    var apiUrl = `${weatherURL}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+
+    fetch(apiUrl)
+    .then(function(res) {
+        return res.json();
+    })
+    .then(function (data) {   
+        displayData(data)
+    })
+    $("#cityName").text(city.toUpperCase() +" " + moment().format("MM/DD/YYYY"))
 }
 
 grabStoredCities();
