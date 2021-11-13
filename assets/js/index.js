@@ -13,7 +13,7 @@ var forecastEncap = document.querySelector(".forecast");
 function displayStoredCities() {
     historyEncap.innerHTML ="";
 
-    for (var i = 0; i < storedCities.length - 1; i++) {
+    for (var i = 0; i < storedCities.length; i++) {
       var btn = document.createElement('button');
       btn.setAttribute('type', 'button');
       btn.classList.add('history-btn', 'btn-history');
