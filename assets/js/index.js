@@ -82,22 +82,6 @@ function cityHistoryLinks(e) {
     getCityLatLong(userInput);
 }
 
-// function getWeatherDetails(lat, lon, city) {
-//     var apiUrl = `${weatherURL}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
-
-//     fetch(apiUrl)
-//     .then(function(res) {
-//         return res.json();
-//     })
-//     .then(function (data) {   
-//         displayWeatherDetails(city, data)
-//     })
-// }
-
-// function displayWeatherDetails(userInput) {
-//     var lat = userInput.l
-// }
-
 function getWeather(location) {
     dailyEncap.innerHTML = "";
     forecastEncap.innerHTML ="<h2></h2>";
@@ -165,9 +149,7 @@ function getWeather(location) {
         }
         grabStoredCities();
     });
-  }
-
-
+}
 
 grabStoredCities();
 formSearch.addEventListener('submit', citySearchSubmit);
