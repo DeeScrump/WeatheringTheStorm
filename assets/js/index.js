@@ -98,11 +98,13 @@ function getWeather(location) {
         $("<div>", { class: "row w-100 topBorder" })
           .append(
             $(
-              "<div class='col'><h2>" +
+              "<div class='col text-center'><h2>" +
                 city +
                 " (" +
                 moment.unix(data.current.dt).format("M/DD/YYYY") +
-                ")</h2><p>Temp: " +
+                ")<span class='col'><img src='https://openweathermap.org/img/wn/" +
+                data.current.weather[0].icon +
+                "@4x.png' alt='weather icon' style='height:50px;'></span></h2><p>Temp: " +
                 Math.round(data.current.temp) +
                 "°F</p><p>Wind: " +
                 Math.round(data.current.wind_speed) +
@@ -110,9 +112,7 @@ function getWeather(location) {
                 data.current.humidity +
                 "%</p><p>UV Index: <span id='topUvi' class='p-1 rounded text-dark'>" +
                 data.current.uvi +
-                "</span></p></div><div class='col'><img src='https://openweathermap.org/img/wn/" +
-                data.current.weather[0].icon +
-                "@4x.png' alt='weather icon'></div></div>"
+                "</span></p></div></div>"
             )
           )
           .appendTo($("#daily"));
