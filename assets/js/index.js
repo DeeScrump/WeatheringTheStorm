@@ -96,25 +96,21 @@ function getWeather(location) {
       })
       .then(function (data) {
         $("<div>", { class: "row w-100 topBorder" })
-          .append(
-            $(
-              "<div class='col text-center'><h2>" +
-                city +
-                " (" +
-                moment.unix(data.current.dt).format("M/DD/YYYY") +
-                ")<span class='col'><img src='https://openweathermap.org/img/wn/" +
-                data.current.weather[0].icon +
-                "@4x.png' alt='weather icon' style='height:50px;'></span></h2><p>Temp: " +
-                Math.round(data.current.temp) +
-                "°F</p><p>Wind: " +
-                Math.round(data.current.wind_speed) +
-                " MPH</p><p>Humidity: " +
-                data.current.humidity +
-                "%</p><p>UV Index: <span id='topUvi' class='p-1 rounded text-dark'>" +
-                data.current.uvi +
-                "</span></p></div></div>"
-            )
-          )
+            .append(
+                `
+                <div class='col text-center'>
+                    <h2>${city} (${moment.unix(data.current.dt).format("M/DD/YYYY")})
+                        <span class='col'>
+                            <img src='https://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png' alt='weather icon' style='height:50px;'>
+                        </span>
+                    </h2>
+                    <p>Temp: ${Math.round(data.current.temp)} °F</p>
+                    <p>Wind: ${Math.round(data.current.wind_speed)} MPH</p>
+                    <p>Humidity: ${data.current.humidity} %</p>
+                    <p>UV Index: <span id='topUvi' class='p-1 rounded text-dark'>${data.current.uvi}</span></p>
+                </div>
+                </div>"
+                `)
           .appendTo($("#daily"));
         if (data.current.uvi <= 2) {
           $("#topUvi").css("background-color", "green");
@@ -131,20 +127,20 @@ function getWeather(location) {
         for (var i = 0; i < 5; i++) {
           $("<div>", { class: "col w-20 d-inline-flex" })
             .append(
-              $(
-                "<div class='card w-20'><img class='card-img-top mw-20' src='https://openweathermap.org/img/wn/" +
-                  data.daily[i].weather[0].icon +
-                  "@4x.png' alt='weather icon'><div class='card-body'><h5 class='card-title'>" +
-                  moment.unix(data.daily[i].dt).format("M/DD/YYYY") +
-                  "</h5><p class='card-text'>Temp: " +
-                  Math.round(data.daily[i].temp.max) +
-                  "°F</p><p class='card-text'>Wind: " +
-                  Math.round(data.daily[i].wind_speed) +
-                  " MPH</p><p class='card-text'>Humidity: " +
-                  data.daily[i].humidity +
-                  "%</p></div></div></div>"
-              )
-            )
+                `
+                <div class='card w-20'>
+                    <img class='card-img-top mw-20' src='https://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@4x.png' alt='weather icon'>
+                    <div class='card-body'>
+                    <h5 class='card-title'>
+                        ${moment.unix(data.daily[i].dt).format("M/DD/YYYY")}
+                    </h5>
+                    <p class='card-text'>Temp: ${Math.round(data.daily[i].temp.max)} °F</p>
+                    <p class='card-text'>Wind: ${Math.round(data.daily[i].wind_speed)} MPH</p>
+                    <p class='card-text'>Humidity: ${data.daily[i].humidity} %</p>
+                    </div>
+                </div>
+                </div>"
+                `)
             .appendTo($("#forecast"));
         }
         grabStoredCities();
