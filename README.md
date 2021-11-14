@@ -24,10 +24,9 @@ What are the steps required to install your project? Provide a step-by-step desc
 Please see screenshots attached
 ![screenshot of landing page](./assets/images/weatheringhp.png)
     
-## Contributions
-The following persons assisted with this project.  If left blank, there were no other contributors.
-- n/a
-- n/a
+## Application Links
+- Github Repository Link:     https://github.com/DeeScrump/WeatheringTheStorm.git
+- Live Deployed Website:      https://deescrump.github.io/WeatheringTheStorm/
 
 ## License
 © <2021> Dwight C Kornbluth II
